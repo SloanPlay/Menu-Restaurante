@@ -1,27 +1,26 @@
 menu = [
-    "1. Hamburguesa",
-    "2. Pizza",
-    "3. Hot Dog",
-    "4. Tacos",
-    "5. Pollo Frito",
-    "6. Ensalada",
-    "7. Sándwich",
-    "8. Empanada",
-    "9. Batida",
-    "10. Refresco"
+    "Hamburguesa",
+    "Pizza",
+    "Hot Dog",
+    "Tacos",
+    "Pollo Frito",
+    "Ensalada",
+    "Sándwich",
+    "Empanada",
+    "Batida",
+    "Refresco"
 ]
 
 precios = [250, 400, 150, 200, 300, 180, 220, 100, 160, 80]
-
 
 ventas = []
 
 
 def mostrar_menu():
     print("\n=== MENÚ DEL RESTAURANTE ===")
-    for item in menu:
-        print(item)
-    print("0. Finalizar y ver reporte")
+    for i, item in enumerate(menu, start=1):
+        print(f"{i}. {item}")
+    print("0. Finalizar y ver factura")
 
 
 def capturar_venta():
@@ -39,20 +38,27 @@ def capturar_venta():
             print("Opción inválida. Intente nuevamente.\n")
 
 
-def mostrar_reporte():
-    print("\n=== REPORTE DE VENTAS ===")
-    
+def mostrar_factura():
+    print("\n============================")
+    print("         FACTURA")
+    print("============================")
+
     total_general = 0
-    
+
     for i in range(10):
         cantidad = ventas.count(i)
-        total = cantidad * precios[i]
-        total_general += total
         
-        print(f"{menu[i]} - Vendidos: {cantidad} - Total: {total} pesos")
-    
-    print(f"\nTOTAL GENERAL DE VENTAS: {total_general} pesos")
+        if cantidad > 0:   
+            total = cantidad * precios[i]
+            total_general += total
+
+            print(f"{menu[i]}  x{cantidad}  -  {total} pesos")
+
+    print("----------------------------")
+    print(f"TOTAL A PAGAR: {total_general} pesos")
+    print("============================\n")
+
 
 
 capturar_venta()
-mostrar_reporte()
+mostrar_factura()
